@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Title</title>
+</head>
+<body>
+<h1>测试</h1>
+<script>
+    var wxUrl = "ws://127.0.0.1:8812";
+    var websocket = new WebSocket(wxUrl);
+    //连接后触发
+    websocket.onopen = function (event) {
+        websocket.send("hello word"); //发送数据给websocket.php
+        console.log("connnect-success");
+    }
+    websocket.onmessage = function (event){
+        console.log('ws-server-return-data'+event.data);
+    }
+    websocket.onclose = function(event){
+        console.log('close');
+    }
+    websocket.onerror = function(event){
+        console.log('error:' + event.data);
+    }
+
+
+</script>
+</body>
+</html>
